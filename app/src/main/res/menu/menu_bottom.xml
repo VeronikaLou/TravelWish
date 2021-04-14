@@ -4,11 +4,11 @@
         android:id="@+id/action_wishlist"
         android:enabled="true"
         android:icon="@drawable/ic_wishlist_heart"
-        android:title="@string/bottom_menu_wishlist" />
+        android:title="@string/wishlist" />
 
     <item
         android:id="@+id/action_exchange_rate"
         android:enabled="true"
         android:icon="@drawable/ic_travel_explore"
-        android:title="@string/bottom_menu_countries" />
+        android:title="@string/countries" />
 </menu>
