@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">Travel Wish</string>
+    <string name="bottom_menu_wishlist">Wishlist</string>
+    <string name="bottom_menu_countries">Explore countries</string>
 </resources>
