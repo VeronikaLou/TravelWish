@@ -4,5 +4,6 @@ import java.io.Serializable
 
 data class Country(
         val name: String,
-        val continent: String
+        val continent: String,
+        val wishlistOrder: Number
 ) : Serializable
