@@ -7,7 +7,7 @@
         android:title="@string/wishlist" />
 
     <item
-        android:id="@+id/action_exchange_rate"
+        android:id="@+id/action_countries"
         android:enabled="true"
         android:icon="@drawable/ic_travel_explore"
         android:title="@string/countries" />
