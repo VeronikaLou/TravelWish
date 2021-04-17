@@ -9,6 +9,6 @@ class WishlistViewHolder(private val binding: ItemWishlistBinding) : RecyclerVie
     fun bind(item: Country) {
         binding.countryAvatarTextView.text = item.wishlistOrder.toString()
         binding.countryTextView.text = item.name
-        binding.continentTextView.text = item.continent
+        binding.continentTextView.text = item.region
     }
 }
