@@ -9,7 +9,7 @@ data class Country(
         val subregion: String,
         val capital: String,
         val population: Number,
-        val area: Number,
+        val area: Number?,
         val timezones: List<String>,
         val languages: List<String>,
         val currencies: List<Map<String, String>>,

@@ -13,8 +13,8 @@ data class CountryResponse(
     val population: Number,
     val latlng: List<String>,
     val demonym: String,
-    val area: Number,
-    val gini: Number,
+    val area: Number?,
+    val gini: Number?,
     val timezones: List<String>,
     val borders: List<String>,
     val nativeName: String,
@@ -24,10 +24,6 @@ data class CountryResponse(
     val translations: Map<String, String>,
     val flag: String,
     val regionalBlocs: List<Map<String, Any>>,
-    val cioc: String
+    val cioc: String?
 )
 
-data class ExchangeRatesResponse(
-    val currency: String,
-    val rates: Map<String, Double>
-)

@@ -38,7 +38,7 @@ class CountryFragment : Fragment(R.layout.fragment_country) {
             binding.countryNativeNameTextView.text = country.nativeName
             binding.countryCapitalTextView.text = country.capital
             binding.countryPopulationTextView.text = country.population.toString()
-            binding.countryAreaTextView.text = country.area.toString()
+            binding.countryAreaTextView.text = country.area?.toString() ?: ""
             binding.countryTimezonesTextView.text = country.timezones.toStringWithoutBrackets()
             binding.countryLanguagesTextView.text = country.languages.toStringWithoutBrackets()
             binding.countryCurrenciesTextView.text = country.currencies.map { it["code"] + " " + it["symbol"] + " - " + it["name"] }.toStringWithoutBrackets()
