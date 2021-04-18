@@ -2,14 +2,19 @@ package com.wish.travel.ui.country
 
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.wish.travel.R
-import com.wish.travel.data.Country
 import com.wish.travel.databinding.FragmentCountryBinding
+import com.wish.travel.repository.RestCountriesRepository
+import com.wish.travel.util.toStringWithoutBrackets
 
-class CountryFragment() : Fragment(R.layout.fragment_country) {
+class CountryFragment : Fragment(R.layout.fragment_country) {
+
+    private val restCountriesRepository = RestCountriesRepository()
 
     private lateinit var binding: FragmentCountryBinding
 
@@ -25,17 +30,19 @@ class CountryFragment() : Fragment(R.layout.fragment_country) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentCountryBinding.bind(view)
 
-        val country = Country("Argentina", "South America", 1)
-
-        binding.countryNameTextView.text = country.name
-        binding.countryRegionTextView.text = country.region
-        binding.countrySubregionTextView.text = country.subregion
-        binding.countryNativeNameTextView.text = country.nativeName
-        binding.countryCapitalTextView.text = country.capital
-        binding.countryPopulationTextView.text = country.population.toString()
-        binding.countryAreaTextView.text = country.area.toString()
-        binding.countryTimezonesTextView.text = country.timezones.toString()
-        binding.countryLanguagesTextView.text = country.languages.toString()
-        binding.toolbar.title = country.name
+        restCountriesRepository.getCountryByCode("arg", successCallback = { country ->
+            GlideToVectorYou.justLoadImage(activity, Uri.parse(country.flagUrl), binding.countryFlagImageView)
+            binding.countryNameTextView.text = country.name
+            binding.countryRegionTextView.text = country.region
+            binding.countrySubregionTextView.text = country.subregion
+            binding.countryNativeNameTextView.text = country.nativeName
+            binding.countryCapitalTextView.text = country.capital
+            binding.countryPopulationTextView.text = country.population.toString()
+            binding.countryAreaTextView.text = country.area.toString()
+            binding.countryTimezonesTextView.text = country.timezones.toStringWithoutBrackets()
+            binding.countryLanguagesTextView.text = country.languages.toStringWithoutBrackets()
+            binding.countryCurrenciesTextView.text = country.currencies.map { it["code"] + " " + it["symbol"] + " - " + it["name"] }.toStringWithoutBrackets()
+            binding.toolbar.title = country.name
+        }, failureCallback = {})
     }
 }

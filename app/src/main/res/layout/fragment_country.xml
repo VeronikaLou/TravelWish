@@ -27,7 +27,7 @@
             android:contentDescription="@string/flag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@android:drawable/ic_menu_gallery" />
+            tools:srcCompat="@android:drawable/ic_menu_gallery"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,6 +87,13 @@
                 android:layout_height="wrap_content"
                 android:textSize="20sp"
                 tools:text="Spanish" />
+
+            <TextView
+                android:id="@+id/country_currencies_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                tools:text="UTC +5" />
 
             <TextView
                 android:id="@+id/country_area_text_view"
