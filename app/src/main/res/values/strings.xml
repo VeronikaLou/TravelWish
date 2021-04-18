@@ -3,4 +3,6 @@
     <string name="wishlist">Wishlist</string>
     <string name="countries">Explore countries</string>
     <string name="flag">Flag</string>
+    <string name="search_by_name">Search country by name</string>
+    <string name="search_button">Search</string>
 </resources>

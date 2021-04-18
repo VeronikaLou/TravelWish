@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.wish.travel.databinding.ActivityMainBinding
+import com.wish.travel.ui.country.CountryFragment
+import com.wish.travel.ui.explore.ExploreFragment
 import com.wish.travel.ui.wishlist.WishlistFragment
 
 class MainActivity : AppCompatActivity() {
@@ -21,11 +23,16 @@ class MainActivity : AppCompatActivity() {
                     switchFragment(WishlistFragment())
                     true
                 }
+                R.id.action_countries -> {
+                    switchFragment(ExploreFragment())
+                    true
+                }
                 else -> false
             }
         }
 
-        switchFragment(WishlistFragment())
+//        switchFragment(WishlistFragment())
+        switchFragment(CountryFragment())
     }
 
     private fun switchFragment(fragment: Fragment) {
