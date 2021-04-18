@@ -5,4 +5,5 @@
     <string name="flag">Flag</string>
     <string name="search_by_name">Search country by name</string>
     <string name="search_button">Search</string>
+    <string name="explore_no_countries_found">No countries found</string>
 </resources>

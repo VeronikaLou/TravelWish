@@ -7,8 +7,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.FragmentExploreBinding
+import com.wish.travel.repository.RestCountriesRepository
+import com.wish.travel.util.toast
 
 class ExploreFragment: Fragment(R.layout.fragment_explore) {
+
+    private val restCountriesRepository = RestCountriesRepository()
 
     private lateinit var binding: FragmentExploreBinding
 
@@ -33,5 +37,16 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         binding.exploreRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.exploreRecyclerView.adapter = adapter
         adapter.submistList(initCountries)
+
+        binding.searchButton.setOnClickListener {
+            restCountriesRepository.getCountriesByName(binding.searchByNameTextField.editText?.text.toString(),
+                    successCallback = { countries ->
+                        adapter.submistList(countries)
+                    },
+                    failureCallback = {
+                        adapter.submistList(emptyList())
+                        activity?.toast(R.string.explore_no_countries_found)
+                    })
+        }
     }
 }
