@@ -1,6 +1,5 @@
 package com.wish.travel.repository
 
-import android.util.Log
 import com.wish.travel.data.Country
 import com.wish.travel.webservice.RestCountriesApi
 import com.wish.travel.webservice.RetrofitUtil
@@ -32,7 +31,6 @@ class RestCountriesRepository(private val restCountriesApi: RestCountriesApi = R
     }
 
     fun getCountriesByName(name: String, successCallback: (List<Country>) -> Unit, failureCallback: () -> Unit) {
-        Log.i("RestCountriesRepository", "getCountriesByName")
         restCountriesApi.getCountriesByName(name)
                 .enqueue(object : Callback<List<CountryResponse>> {
 
@@ -50,6 +48,26 @@ class RestCountriesRepository(private val restCountriesApi: RestCountriesApi = R
                         failureCallback()
                     }
                 })
+    }
+
+    fun getAllCountries(successCallback: (List<Country>) -> Unit, failureCallback: () -> Unit) {
+        restCountriesApi.getAllCountries()
+            .enqueue(object : Callback<List<CountryResponse>> {
+
+                override fun onResponse(call: Call<List<CountryResponse>>, response: Response<List<CountryResponse>>) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        val countries = responseBody.mapToCountriesList()
+                        successCallback(countries)
+                    } else {
+                        failureCallback()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<CountryResponse>>, t: Throwable) {
+                    failureCallback()
+                }
+            })
     }
 
     private fun CountryResponse?.mapToCountry(): Country = Country(this!!.name, this.nativeName, this.region, this.subregion,

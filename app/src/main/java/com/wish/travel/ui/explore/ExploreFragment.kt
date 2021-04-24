@@ -16,16 +16,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
 
     private lateinit var binding: FragmentExploreBinding
 
-    private var initCountries = listOf(
-            Country("Argentina", "South America", 1),
-            Country("Czechia", "Europe", 2),
-            Country("China", "Asia", 3),
-            Country("Germany", "Europe", 4),
-            Country("Slovakia", "Europe", 5),
-            Country("Slovenia", "Europe", 6),
-            Country("Croatia", "Europe", 7)
-    )
-
     private val adapter: ExploreAdapter by lazy {
         ExploreAdapter()
     }
@@ -36,7 +26,15 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
 
         binding.exploreRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.exploreRecyclerView.adapter = adapter
-        adapter.submistList(initCountries)
+        // init list - all countries
+        restCountriesRepository.getAllCountries(
+            successCallback = { countries ->
+                adapter.submistList(countries)
+            },
+            failureCallback = {
+                adapter.submistList(emptyList())
+                activity?.toast(R.string.explore_no_countries_found)
+            })
 
         binding.searchButton.setOnClickListener {
             restCountriesRepository.getCountriesByName(binding.searchByNameTextField.editText?.text.toString(),

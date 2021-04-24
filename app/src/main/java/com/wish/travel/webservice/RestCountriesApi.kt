@@ -16,4 +16,7 @@ interface RestCountriesApi {
     fun getCountriesByName(
             @Path("name") name: String
     ): Call<List<CountryResponse>>
+
+    @GET("all")
+    fun getAllCountries(): Call<List<CountryResponse>>
 }
