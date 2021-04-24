@@ -70,6 +70,26 @@ class RestCountriesRepository(private val restCountriesApi: RestCountriesApi = R
             })
     }
 
+    fun getCountriesByRegion(region: String, successCallback: (List<Country>) -> Unit, failureCallback: () -> Unit) {
+        restCountriesApi.getCountriesByRegion(region)
+            .enqueue(object : Callback<List<CountryResponse>> {
+
+                override fun onResponse(call: Call<List<CountryResponse>>, response: Response<List<CountryResponse>>) {
+                    if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        val countries = responseBody.mapToCountriesList()
+                        successCallback(countries)
+                    } else {
+                        failureCallback()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<CountryResponse>>, t: Throwable) {
+                    failureCallback()
+                }
+            })
+    }
+
     private fun CountryResponse?.mapToCountry(): Country = Country(this!!.name, this.nativeName, this.region, this.subregion,
                     this.capital, this.population, this.area, this.timezones, this.languages.map { it["name"] ?: "" },
                     this.currencies, this.flag, 0)
