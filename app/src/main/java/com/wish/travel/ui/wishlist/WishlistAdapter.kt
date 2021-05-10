@@ -17,7 +17,7 @@ class WishlistAdapter(private var items: List<Country> = emptyList()): RecyclerV
 
     override fun getItemCount(): Int = items.size
 
-    fun submistList(newItems: List<Country>){
+    fun submitList(newItems: List<Country>){
         this.items = newItems
         items = newItems
         notifyDataSetChanged()

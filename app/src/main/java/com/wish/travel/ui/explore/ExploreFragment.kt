@@ -6,6 +6,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.wish.travel.Communicator
 import com.wish.travel.R
 import com.wish.travel.databinding.FragmentExploreBinding
 import com.wish.travel.repository.RestCountriesRepository
@@ -22,7 +23,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
     private lateinit var binding: FragmentExploreBinding
 
     private val adapter: ExploreAdapter by lazy {
-        ExploreAdapter()
+        ExploreAdapter(activity as Communicator)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -87,6 +88,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         restCountriesRepository.getAllCountries(
             successCallback = { countries ->
                 adapter.submistList(countries)
+                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 adapter.submistList(emptyList())
