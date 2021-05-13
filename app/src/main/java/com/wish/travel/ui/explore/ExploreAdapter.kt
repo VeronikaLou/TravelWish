@@ -19,7 +19,7 @@ class ExploreAdapter(
         val addToWishlistBtn = itemView.findViewById<ImageView>(R.id.wishlist_add);
 
         fun bind(item: Country, position: Int) {
-            binding.countryAvatarTextView.text = item.wishlistOrder.toString()
+            binding.countryAvatarTextView.text = item.name[0].toString()
             binding.countryTextView.text = item.name
             binding.continentTextView.text = item.region
 

@@ -50,7 +50,11 @@ class MainActivity : AppCompatActivity(), Communicator {
         val bundle = Bundle()
         val country = countries[position]
         if (!wishlistCountries.contains(country)) {
+            country.wishlistOrder = wishlistCountries.size + 1
             wishlistCountries.add(country)
+            Toast.makeText( this, "${country.name} added to the wishlist", Toast.LENGTH_SHORT).show()
+        } else {
+            wishlistCountries.remove(country)
         }
         bundle.putSerializable("wishlist", wishlistCountries)
 

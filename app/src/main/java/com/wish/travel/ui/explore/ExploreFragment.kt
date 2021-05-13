@@ -65,6 +65,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             name,
             successCallback = { countries ->
                 adapter.submistList(countries)
+                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 adapter.submistList(emptyList())
@@ -77,6 +78,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             region,
             successCallback = { countries ->
                 adapter.submistList(countries)
+                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 adapter.submistList(emptyList())
