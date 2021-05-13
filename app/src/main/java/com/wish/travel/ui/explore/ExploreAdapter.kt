@@ -11,19 +11,24 @@ import com.wish.travel.databinding.ItemWishlistBinding
 
 class ExploreAdapter(
         private var communicator: Communicator,
-        private var items: List<Country> = emptyList()
+        private var items: List<Country> = emptyList(),
+        private val countrySelectedCallback: (String) -> Unit
 ) : RecyclerView.Adapter<ExploreAdapter.ExploreViewHolder>() {
 
     inner class ExploreViewHolder(private val binding: ItemWishlistBinding, private val communicator: Communicator) : RecyclerView.ViewHolder(binding.root) {
 
         val addToWishlistBtn = itemView.findViewById<ImageView>(R.id.wishlist_add);
 
-        fun bind(item: Country, position: Int) {
+        fun bind(item: Country, position: Int, countrySelectedCallback: (String) -> Unit) {
             binding.countryAvatarTextView.text = item.name[0].toString()
             binding.countryTextView.text = item.name
             binding.continentTextView.text = item.region
 
             addToWishlistBtn.setOnClickListener { communicator.passWishlistCountriesIndexes(position) }
+
+            binding.root.setOnClickListener {
+                countrySelectedCallback(item.code)
+            }
         }
 
     }
@@ -34,7 +39,7 @@ class ExploreAdapter(
 
     override fun onBindViewHolder(holder: ExploreViewHolder, position: Int) {
         val item = items[position]
-        holder.bind(item, position)
+        holder.bind(item, position, countrySelectedCallback)
     }
 
     override fun getItemCount(): Int = items.size

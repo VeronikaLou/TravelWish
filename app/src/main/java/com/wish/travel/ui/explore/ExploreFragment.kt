@@ -10,6 +10,7 @@ import com.wish.travel.Communicator
 import com.wish.travel.R
 import com.wish.travel.databinding.FragmentExploreBinding
 import com.wish.travel.repository.RestCountriesRepository
+import com.wish.travel.ui.country.CountryActivity
 import com.wish.travel.util.toast
 
 class ExploreFragment: Fragment(R.layout.fragment_explore) {
@@ -23,7 +24,11 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
     private lateinit var binding: FragmentExploreBinding
 
     private val adapter: ExploreAdapter by lazy {
-        ExploreAdapter(activity as Communicator)
+        ExploreAdapter(activity as Communicator, countrySelectedCallback = {
+                countryCode ->
+                    val intent = CountryActivity.newIntent(requireContext(), countryCode)
+                    startActivity(intent)
+        })
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
