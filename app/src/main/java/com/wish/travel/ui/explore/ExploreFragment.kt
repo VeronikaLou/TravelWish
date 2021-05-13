@@ -39,10 +39,10 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         binding.exploreRecyclerView.adapter = adapter
         showAllCountries()
 
-        binding.searchButton.setOnClickListener {
-            val name = binding.searchByNameTextField.editText?.text.toString()
-            showCountriesByName(name)
-        }
+//        binding.searchButton.setOnClickListener {
+//            val name = binding.searchByNameTextField.editText?.text.toString()
+//            showCountriesByName(name)
+//        }
 
         initRegionsSpinner()
     }
