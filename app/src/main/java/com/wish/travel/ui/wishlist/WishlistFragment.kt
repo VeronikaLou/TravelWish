@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.FragmentWishlistBinding
+import com.wish.travel.ui.country.CountryActivity
 import com.wish.travel.util.toast
 
 class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
@@ -17,7 +18,10 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     private lateinit var binding: FragmentWishlistBinding
 
     private val adapter: WishlistAdapter by lazy {
-        WishlistAdapter()
+        WishlistAdapter { countryCode ->
+            val intent = CountryActivity.newIntent(requireContext(), countryCode)
+            startActivity(intent)
+        }
     }
 
 

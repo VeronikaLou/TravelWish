@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class Country(
         val name: String,
+        val code: String,
         val nativeName: String,
         val region: String,
         val subregion: String,
@@ -16,7 +17,7 @@ data class Country(
         val flagUrl: String,
         val wishlistOrder: Number
 ) : Serializable {
-        constructor(name: String, region: String, wishlistOrder: Number) :
-                this(name, "", region, "", "", 0, 0,
+        constructor(name: String, code: String, region: String, wishlistOrder: Number) :
+                this(name, code, "", region, "", "", 0, 0,
                         listOf<String>(), listOf<String>(), listOf<Map<String, String>>(), "", wishlistOrder)
 }

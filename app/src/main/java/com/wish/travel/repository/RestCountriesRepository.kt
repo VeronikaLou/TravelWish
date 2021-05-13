@@ -90,7 +90,7 @@ class RestCountriesRepository(private val restCountriesApi: RestCountriesApi = R
             })
     }
 
-    private fun CountryResponse?.mapToCountry(): Country = Country(this!!.name, this.nativeName, this.region, this.subregion,
+    private fun CountryResponse?.mapToCountry(): Country = Country(this!!.name, this.alpha2Code, this.nativeName, this.region, this.subregion,
                     this.capital, this.population, this.area, this.timezones, this.languages.map { it["name"] ?: "" },
                     this.currencies, this.flag, 0)
 

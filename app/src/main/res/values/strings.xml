@@ -6,4 +6,16 @@
     <string name="search_by_name">Search country by name</string>
     <string name="search_button">Search</string>
     <string name="explore_no_countries_found">No countries found</string>
+
+
+    <string name="country_name">Name</string>
+    <string name="region">Region</string>
+    <string name="subregion">Subregion</string>
+    <string name="native_name">Native name</string>
+    <string name="capital">Capital</string>
+    <string name="population">Population</string>
+    <string name="languages">Languages</string>
+    <string name="currencies">Currencies</string>
+    <string name="area">Area</string>
+    <string name="timezones">Timezones</string>
 </resources>

@@ -1,19 +1,13 @@
 package com.wish.travel
 
 import android.os.Bundle
-import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import android.widget.Toast
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ActivityMainBinding
-import com.wish.travel.ui.country.CountryFragment
 import com.wish.travel.ui.explore.ExploreFragment
 import com.wish.travel.ui.wishlist.WishlistFragment
-import com.wish.travel.util.toast
-import java.text.FieldPosition
 
 class MainActivity : AppCompatActivity(), Communicator {
     private val wishlistFragment: WishlistFragment = WishlistFragment()
@@ -42,8 +36,8 @@ class MainActivity : AppCompatActivity(), Communicator {
             }
         }
 
+        switchFragment(ExploreFragment())
 //        switchFragment(WishlistFragment())
-        switchFragment(CountryFragment())
     }
 
     private fun switchFragment(fragment: Fragment) {
