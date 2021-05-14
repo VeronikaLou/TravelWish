@@ -19,4 +19,5 @@
     <string name="area">Area</string>
     <string name="timezones">Timezones</string>
     <string name="explore">Explore countries</string>
+    <string name="clear_button">Clear</string>
 </resources>
