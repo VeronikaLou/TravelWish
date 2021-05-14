@@ -29,6 +29,8 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
         super.onViewCreated(view, savedInstanceState)
         val wishlistCountries = arguments?.getSerializable("wishlist") as List<Country>
 
+        activity?.setTitle(R.string.wishlist)
+
         binding = FragmentWishlistBinding.bind(view)
         binding.wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.wishlistRecyclerView.adapter = adapter

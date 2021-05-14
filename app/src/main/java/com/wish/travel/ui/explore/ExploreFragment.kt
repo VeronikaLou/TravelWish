@@ -36,6 +36,8 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentExploreBinding.bind(view)
 
+        activity?.setTitle(R.string.explore)
+
         binding.exploreRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.exploreRecyclerView.adapter = adapter
         showAllCountries()
