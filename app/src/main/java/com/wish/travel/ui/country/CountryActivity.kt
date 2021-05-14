@@ -23,16 +23,20 @@ class CountryActivity : AppCompatActivity() {
 
     companion object {
         private const val COUNTRY_ID = "country_id"
+        private const val COUNTRY_NAME = "country_name"
 
-        fun newIntent(context: Context, countryId: String): Intent =
+        fun newIntent(context: Context, countryId: String, countryName: String): Intent =
                 Intent(context, CountryActivity::class.java)
                         .putExtra(COUNTRY_ID, countryId)
+                        .putExtra(COUNTRY_NAME, countryName)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        
+
+        setTitle(intent.getStringExtra(COUNTRY_NAME))
+
         restCountriesRepository.getCountryByCode(intent.getStringExtra(COUNTRY_ID)!!, successCallback = { country ->
             bindCountryInfoValues(country)
             bindCountryInfoLabels()
@@ -58,6 +62,7 @@ class CountryActivity : AppCompatActivity() {
             Uri.parse(country.flagUrl),
             binding.countryFlagImageView
         )
+
         binding.countryNameTextView.text = country.name
         binding.countryRegionTextView.text = country.region
         binding.countrySubregionTextView.text = country.subregion
@@ -72,7 +77,6 @@ class CountryActivity : AppCompatActivity() {
         binding.countryCurrenciesTextView.text =
             country.currencies.map { it["code"] + " " + it["symbol"] + " - " + it["name"] }
                 .toStringWithoutBrackets()
-        binding.toolbar.title = country.name
     }
 
     private fun formattedNumber(number: Number) : String {

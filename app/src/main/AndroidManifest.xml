@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.country.CountryActivity" />
+        <activity android:name=".ui.country.CountryActivity"
+            android:parentActivityName=".MainActivity"/>
     </application>
 
 </manifest>

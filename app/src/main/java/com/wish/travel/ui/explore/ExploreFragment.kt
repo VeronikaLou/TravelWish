@@ -26,8 +26,8 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
 
     private val adapter: ExploreAdapter by lazy {
         ExploreAdapter(activity as Communicator, countrySelectedCallback = {
-                countryCode ->
-                    val intent = CountryActivity.newIntent(requireContext(), countryCode)
+                countryCode, countryName ->
+                    val intent = CountryActivity.newIntent(requireContext(), countryCode, countryName)
                     startActivity(intent)
         })
     }

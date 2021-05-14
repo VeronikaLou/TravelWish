@@ -12,14 +12,14 @@ import com.wish.travel.databinding.ItemWishlistBinding
 class ExploreAdapter(
         private var communicator: Communicator,
         private var items: List<Country> = emptyList(),
-        private val countrySelectedCallback: (String) -> Unit
+        private val countrySelectedCallback: (String, String) -> Unit
 ) : RecyclerView.Adapter<ExploreAdapter.ExploreViewHolder>() {
 
     inner class ExploreViewHolder(private val binding: ItemWishlistBinding, private val communicator: Communicator) : RecyclerView.ViewHolder(binding.root) {
 
         val addToWishlistBtn = itemView.findViewById<ImageView>(R.id.wishlist_add);
 
-        fun bind(item: Country, position: Int, countrySelectedCallback: (String) -> Unit) {
+        fun bind(item: Country, position: Int, countrySelectedCallback: (String, String) -> Unit) {
             binding.countryAvatarTextView.text = item.name[0].toString()
             binding.countryTextView.text = item.name
             binding.continentTextView.text = item.region
@@ -27,7 +27,7 @@ class ExploreAdapter(
             addToWishlistBtn.setOnClickListener { communicator.passWishlistCountriesIndexes(position) }
 
             binding.root.setOnClickListener {
-                countrySelectedCallback(item.code)
+                countrySelectedCallback(item.code, item.name)
             }
         }
 

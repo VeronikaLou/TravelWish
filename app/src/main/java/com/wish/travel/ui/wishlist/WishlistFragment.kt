@@ -18,8 +18,8 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
     private lateinit var binding: FragmentWishlistBinding
 
     private val adapter: WishlistAdapter by lazy {
-        WishlistAdapter { countryCode ->
-            val intent = CountryActivity.newIntent(requireContext(), countryCode)
+        WishlistAdapter { countryCode, countryName ->
+            val intent = CountryActivity.newIntent(requireContext(), countryCode, countryName)
             startActivity(intent)
         }
     }

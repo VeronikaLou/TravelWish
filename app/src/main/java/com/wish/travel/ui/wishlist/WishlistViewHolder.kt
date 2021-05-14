@@ -6,13 +6,13 @@ import com.wish.travel.databinding.ItemWishlistBinding
 
 class WishlistViewHolder(private val binding: ItemWishlistBinding) : RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(item: Country, countrySelectedCallback: (String) -> Unit) {
+    fun bind(item: Country, countrySelectedCallback: (String, String) -> Unit) {
         binding.countryAvatarTextView.text = item.wishlistOrder.toString()
         binding.countryTextView.text = item.name
         binding.continentTextView.text = item.region
 
         binding.root.setOnClickListener {
-            countrySelectedCallback(item.code)
+            countrySelectedCallback(item.code, item.name)
         }
     }
 }

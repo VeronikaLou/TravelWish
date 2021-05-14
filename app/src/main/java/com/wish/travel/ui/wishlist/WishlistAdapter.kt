@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
 
-class WishlistAdapter(private val countrySelectedCallback: (String) -> Unit): RecyclerView.Adapter<WishlistViewHolder>() {
+class WishlistAdapter(private val countrySelectedCallback: (String, String) -> Unit): RecyclerView.Adapter<WishlistViewHolder>() {
 
     private var items: List<Country> = emptyList()
 
