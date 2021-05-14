@@ -43,8 +43,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         showAllCountries()
 
         binding.searchButton.setOnClickListener {
-//            val name = binding.searchByNameInputField.editText?.text.toString()
-//            showCountriesByName(name)
             searchCountries()
         }
 
@@ -55,18 +53,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         val regionsAdapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_list_item_1, regions)
         binding.regionSpinner.adapter = regionsAdapter
-//        binding.regionSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-//            override fun onNothingSelected(p0: AdapterView<*>?) {}
-//
-//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, position: Int, p3: Long) {
-//                val selectedRegion = regions[position]
-//                if (position == 0) {
-//                    showAllCountries()
-//                } else {
-//                    showCountriesInRegion(selectedRegion)
-//                }
-//            }
-//        }
     }
 
     private fun searchCountries() {
