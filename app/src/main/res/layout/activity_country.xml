@@ -2,202 +2,204 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
 
-        <ImageView
-            android:id="@+id/country_flag_image_view"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="35dp"
-            android:contentDescription="@string/flag"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@android:drawable/ic_menu_gallery"/>
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/country_name_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/country_name" />
 
             <TextView
                 android:id="@+id/country_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="Argentina" />
 
             <TextView
                 android:id="@+id/country_region_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/region" />
 
             <TextView
                 android:id="@+id/country_region_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="Americas" />
 
             <TextView
                 android:id="@+id/country_subregion_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/subregion" />
 
             <TextView
                 android:id="@+id/country_subregion_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="South America" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/country_flag_image_view"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:contentDescription="@string/flag"
+            tools:srcCompat="@android:drawable/ic_menu_gallery" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/country_native_name_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/native_name" />
 
             <TextView
                 android:id="@+id/country_native_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="Argentina" />
 
             <TextView
                 android:id="@+id/country_capital_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/capital" />
 
             <TextView
                 android:id="@+id/country_capital_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="Buenos Aires" />
 
             <TextView
                 android:id="@+id/country_population_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/population" />
 
             <TextView
                 android:id="@+id/country_population_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="20 000 000" />
 
             <TextView
                 android:id="@+id/country_languages_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/languages" />
 
             <TextView
                 android:id="@+id/country_languages_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="Spanish" />
 
             <TextView
                 android:id="@+id/country_currencies_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/currencies" />
 
             <TextView
                 android:id="@+id/country_currencies_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="UTC +5" />
 
             <TextView
                 android:id="@+id/country_area_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/area" />
 
             <TextView
                 android:id="@+id/country_area_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="500 000" />
 
             <TextView
                 android:id="@+id/country_timezones_label_text_view"
+                style="@style/TextCountryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/TextCountryLabel"
                 tools:text="@string/timezones" />
 
             <TextView
                 android:id="@+id/country_timezones_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:layout_marginBottom="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textSize="20sp"
                 tools:text="UTC +5" />
         </LinearLayout>
-        </ScrollView>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+    </ScrollView>
 </LinearLayout>
