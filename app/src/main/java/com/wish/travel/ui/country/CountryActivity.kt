@@ -35,6 +35,7 @@ class CountryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setTitle(intent.getStringExtra(COUNTRY_NAME))
 
         restCountriesRepository.getCountryByCode(intent.getStringExtra(COUNTRY_ID)!!, successCallback = { country ->
