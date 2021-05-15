@@ -1,45 +1,66 @@
 package com.wish.travel.ui.explore
 
+import ExploreViewHolder
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.wish.travel.Communicator
-import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
 
 class ExploreAdapter(
-        private var communicator: Communicator,
-        private var items: List<Country> = emptyList(),
-        private val countrySelectedCallback: (String, String) -> Unit
-) : RecyclerView.Adapter<ExploreAdapter.ExploreViewHolder>() {
+    private var communicator: Communicator,
+    private var items: List<Country> = emptyList(),
+    private val countrySelectedCallback: (String, String) -> Unit
+) : RecyclerView.Adapter<ExploreViewHolder>() {
 
-    inner class ExploreViewHolder(private val binding: ItemWishlistBinding, private val communicator: Communicator) : RecyclerView.ViewHolder(binding.root) {
-
-        val addToWishlistBtn = itemView.findViewById<ImageView>(R.id.wishlist_add);
-
-        fun bind(item: Country, position: Int, countrySelectedCallback: (String, String) -> Unit) {
-            binding.countryAvatarTextView.text = item.name[0].toString()
-            binding.countryTextView.text = item.name
-            binding.continentTextView.text = item.region
-
-            addToWishlistBtn.setOnClickListener { communicator.passWishlistCountriesIndexes(position) }
-
-            binding.root.setOnClickListener {
-                countrySelectedCallback(item.code, item.name)
+    private fun addCountryToWishlist(position: Int) {
+        val country = items[position]
+        val wishlistDB = communicator.getWishlistDB()
+        var wishlistCountries = wishlistDB.allWishlistCountries
+        if (!wishlistCountries.map { country -> country.name }.contains(country.name)) {
+            country.wishlistOrder = wishlistCountries.size + 1
+            wishlistDB.insertData(country)
+        } else {
+            wishlistDB.deleteWishlistCountry(country)
+            wishlistCountries.mapIndexed { index, item -> item.wishlistOrder = index + 1 }
+            wishlistDB.allWishlistCountries.forEachIndexed { index, country ->
+                run {
+                    country.wishlistOrder = index + 1
+                    wishlistDB.updateWishlistCountry(
+                        country
+                    )
+                }
             }
         }
-
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExploreViewHolder {
-        return ExploreViewHolder(ItemWishlistBinding.inflate(LayoutInflater.from(parent.context), parent, false), communicator)
+        return ExploreViewHolder(
+            ItemWishlistBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun onBindViewHolder(holder: ExploreViewHolder, position: Int) {
         val item = items[position]
-        holder.bind(item, position, countrySelectedCallback)
+        val wishlistItem = communicator.getWishlistDB().allWishlistCountries.find { c -> c.name == item.name }
+        if(wishlistItem != null) {
+            item.wishlistOrder = wishlistItem.wishlistOrder
+        } else {
+            item.wishlistOrder = 0
+        }
+        holder.bind(
+            item,
+            position,
+            countrySelectedCallback,
+            addCountryToWishlist = { position -> addCountryToWishlist(position) }
+        )
     }
 
     override fun getItemCount(): Int = items.size

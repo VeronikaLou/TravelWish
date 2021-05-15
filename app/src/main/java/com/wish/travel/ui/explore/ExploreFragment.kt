@@ -84,7 +84,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
                     noCountriesFound()
                 }
                 adapter.submistList(filteredCountries)
-                (activity as Communicator).passCountries(ArrayList(filteredCountries))
             },
             failureCallback = {
                 noCountriesFound()
@@ -96,7 +95,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             name,
             successCallback = { countries ->
                 adapter.submistList(countries)
-                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 noCountriesFound()
@@ -108,7 +106,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             region,
             successCallback = { countries ->
                 adapter.submistList(countries)
-                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 noCountriesFound()
@@ -119,7 +116,6 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         restCountriesRepository.getAllCountries(
             successCallback = { countries ->
                 adapter.submistList(countries)
-                (activity as Communicator).passCountries(ArrayList(countries))
             },
             failureCallback = {
                 noCountriesFound()

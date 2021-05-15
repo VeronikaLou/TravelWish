@@ -15,9 +15,9 @@ data class Country(
         val languages: List<String>,
         val currencies: List<Map<String, String>>,
         val flagUrl: String,
-        var wishlistOrder: Number
+        var wishlistOrder: Int
 ) : Serializable {
-        constructor(name: String, code: String, region: String, wishlistOrder: Number) :
+        constructor(name: String, code: String, region: String, wishlistOrder: Int) :
                 this(name, code, "", region, "", "", 0, 0,
                         listOf<String>(), listOf<String>(), listOf<Map<String, String>>(), "", wishlistOrder)
 }

@@ -1,26 +1,34 @@
 import android.graphics.Color
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
 
-class WishlistViewHolder(private val binding: ItemWishlistBinding) :
+class ExploreViewHolder(private val binding: ItemWishlistBinding) :
     RecyclerView.ViewHolder(binding.root) {
-
     fun bind(
         item: Country,
         position: Int,
         countrySelectedCallback: (String, String) -> Unit,
-        removeAtPosition: (Int) -> Unit
+        addCountryToWishlist: (position: Int) -> Unit
     ) {
-        binding.countryAvatarTextView.text = item.wishlistOrder.toString()
+        binding.countryAvatarTextView.text = item.name[0].toString()
         binding.countryTextView.text = item.name
         binding.continentTextView.text = item.region
-        binding.wishlistAdd.setBackgroundColor(Color.MAGENTA)
+
+        if (item.wishlistOrder > 0) {
+            binding.wishlistAdd.setBackgroundColor(Color.MAGENTA)
+        } else {
+            binding.wishlistAdd.setBackgroundColor(Color.WHITE)
+        }
+
+        binding.wishlistAdd.setOnClickListener { view ->
+            addCountryToWishlist(position)
+        }
 
         binding.root.setOnClickListener {
             countrySelectedCallback(item.code, item.name)
         }
-
-        binding.wishlistAdd.setOnClickListener { removeAtPosition(position) }
     }
+
 }
