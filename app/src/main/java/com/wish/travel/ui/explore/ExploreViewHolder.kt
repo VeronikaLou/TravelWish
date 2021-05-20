@@ -1,6 +1,7 @@
 import android.graphics.Color
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
+import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
 
@@ -17,9 +18,9 @@ class ExploreViewHolder(private val binding: ItemWishlistBinding) :
         binding.continentTextView.text = item.region
 
         if (item.wishlistOrder > 0) {
-            binding.wishlistAdd.setBackgroundColor(Color.MAGENTA)
+            binding.wishlistAdd.setBackgroundResource(R.drawable.ic_wishlist_heart_red)
         } else {
-            binding.wishlistAdd.setBackgroundColor(Color.WHITE)
+            binding.wishlistAdd.setBackgroundResource(R.drawable.ic_wishlist_heart_border)
         }
 
         binding.wishlistAdd.setOnClickListener { view ->

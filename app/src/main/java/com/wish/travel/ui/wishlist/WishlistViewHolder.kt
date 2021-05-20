@@ -15,7 +15,6 @@ class WishlistViewHolder(private val binding: ItemWishlistBinding) :
         binding.countryAvatarTextView.text = item.wishlistOrder.toString()
         binding.countryTextView.text = item.name
         binding.continentTextView.text = item.region
-        binding.wishlistAdd.setBackgroundColor(Color.MAGENTA)
 
         binding.root.setOnClickListener {
             countrySelectedCallback(item.code, item.name)
