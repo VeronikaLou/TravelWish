@@ -3,7 +3,6 @@ package com.wish.travel
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.wish.travel.data.Country
 import com.wish.travel.databinding.ActivityMainBinding
 import com.wish.travel.ui.explore.ExploreFragment
 import com.wish.travel.ui.wishlist.WishlistFragment
@@ -34,6 +33,26 @@ class MainActivity : AppCompatActivity(), Communicator {
         }
 
         switchFragment(WishlistFragment())
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt("selectedMenuItemId", binding.bottomNavigation.selectedItemId)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        when (savedInstanceState.getInt("selectedMenuItemId")) {
+            R.id.action_wishlist -> {
+                switchFragment(WishlistFragment())
+                true
+            }
+            R.id.action_countries -> {
+                switchFragment(ExploreFragment())
+                true
+            }
+            else ->switchFragment(WishlistFragment())
+        }
     }
 
     private fun switchFragment(fragment: Fragment) {
