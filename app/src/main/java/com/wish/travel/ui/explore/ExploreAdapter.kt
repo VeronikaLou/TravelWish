@@ -1,15 +1,18 @@
 package com.wish.travel.ui.explore
 
 import ExploreViewHolder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.wish.travel.Communicator
+import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
+import com.wish.travel.util.toast
 
 class ExploreAdapter(
+    private val activity: FragmentActivity?,
     private var communicator: Communicator,
     private var items: List<Country> = emptyList(),
     private val countrySelectedCallback: (String, String) -> Unit
@@ -22,6 +25,7 @@ class ExploreAdapter(
         if (!wishlistCountries.map { country -> country.name }.contains(country.name)) {
             country.wishlistOrder = wishlistCountries.size + 1
             wishlistDB.insertData(country)
+            activity?.toast(country.name + " " + activity.getString(R.string.addedToWishlist))
         } else {
             wishlistDB.deleteWishlistCountry(country)
             wishlistCountries.mapIndexed { index, item -> item.wishlistOrder = index + 1 }
@@ -33,6 +37,7 @@ class ExploreAdapter(
                     )
                 }
             }
+            activity?.toast(country.name + " " + activity.getString(R.string.removedFromWishlist))
         }
         notifyDataSetChanged()
     }

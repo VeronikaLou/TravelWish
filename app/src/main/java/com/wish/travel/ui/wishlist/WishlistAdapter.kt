@@ -3,12 +3,16 @@ package com.wish.travel.ui.wishlist
 import WishlistViewHolder
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.wish.travel.Communicator
+import com.wish.travel.R
 import com.wish.travel.data.Country
 import com.wish.travel.databinding.ItemWishlistBinding
+import com.wish.travel.util.toast
 
 class WishlistAdapter(
+    private val activity: FragmentActivity?,
     private var communicator: Communicator,
     private var items: ArrayList<Country> = communicator.getWishlistDB().allWishlistCountries,
     private val countrySelectedCallback: (String, String) -> Unit
@@ -43,6 +47,7 @@ class WishlistAdapter(
         val country = items[position]
         communicator.getWishlistDB().deleteWishlistCountry(country)
         reindexWishlistCountries()
+        activity?.toast(country.name + " " + activity.getString(R.string.removedFromWishlist))
     }
 
     private fun reindexWishlistCountries() {

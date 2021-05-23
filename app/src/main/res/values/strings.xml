@@ -5,8 +5,10 @@
     <string name="flag">Flag</string>
     <string name="search_by_name">Search country by name</string>
     <string name="search_button">Search</string>
-    <string name="explore_no_countries_found">No countries found</string>
 
+    <string name="explore_no_countries_found">No countries found</string>
+    <string name="removedFromWishlist">was removed from Wishlist</string>
+    <string name="addedToWishlist">was added to Wishlist</string>
 
     <string name="country_name">Name</string>
     <string name="region">Region</string>

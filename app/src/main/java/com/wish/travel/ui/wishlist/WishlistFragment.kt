@@ -20,6 +20,7 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
 
     private val adapter: WishlistAdapter by lazy {
         WishlistAdapter(
+            activity,
             activity as Communicator,
             countrySelectedCallback = { countryCode, countryName ->
                 val intent = CountryActivity.newIntent(requireContext(), countryCode, countryName)
