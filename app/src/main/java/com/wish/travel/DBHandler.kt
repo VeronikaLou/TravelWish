@@ -14,7 +14,7 @@ val COL_CODE = "code"
 val COL_REGION = "region"
 var COL_WISHLIST_ORDER = "wishlist_order"
 
-class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE $TABLE_NAME (" +
                 "$COL_NAME VARCHAR(256), " +
@@ -26,7 +26,8 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        TODO("Not yet implemented")
+        db?.execSQL("DROP TABLE IF EXISTS $TABLE_NAME");
+        onCreate(db);
     }
 
     fun insertData(country: Country) {
