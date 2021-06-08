@@ -40,6 +40,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
 
         binding.exploreRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.exploreRecyclerView.adapter = adapter
+        binding.progressBar.visibility = View.VISIBLE
         showAllCountries()
 
         binding.searchButton.setOnClickListener {
@@ -56,6 +57,7 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
     }
 
     private fun searchCountries() {
+        binding.progressBar.visibility = View.VISIBLE
         val selectedRegionPosition = binding.regionSpinner.selectedItemPosition
         val searchName = binding.searchByNameInputField.editText?.text.toString()
 
@@ -84,9 +86,11 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
                     noCountriesFound()
                 }
                 adapter.submistList(filteredCountries)
+                binding.progressBar.visibility = View.GONE
             },
             failureCallback = {
                 noCountriesFound()
+                binding.progressBar.visibility = View.GONE
             })
     }
 
@@ -95,9 +99,11 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             name,
             successCallback = { countries ->
                 adapter.submistList(countries)
+                binding.progressBar.visibility = View.GONE
             },
             failureCallback = {
                 noCountriesFound()
+                binding.progressBar.visibility = View.GONE
             })
     }
 
@@ -106,9 +112,11 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
             region,
             successCallback = { countries ->
                 adapter.submistList(countries)
+                binding.progressBar.visibility = View.GONE
             },
             failureCallback = {
                 noCountriesFound()
+                binding.progressBar.visibility = View.GONE
             })
     }
 
@@ -116,9 +124,11 @@ class ExploreFragment: Fragment(R.layout.fragment_explore) {
         restCountriesRepository.getAllCountries(
             successCallback = { countries ->
                 adapter.submistList(countries)
+                binding.progressBar.visibility = View.GONE
             },
             failureCallback = {
                 noCountriesFound()
+                binding.progressBar.visibility = View.GONE
             })
     }
 
