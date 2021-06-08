@@ -33,6 +33,11 @@
     <style name="Text.Medium.Normal.Dark" parent="Text.Regular.Normal.Dark">
         <item name="fontFamily">sans-serif-medium</item>
     </style>
+    <style name="Text.Medium.Large.Dark" parent="Text.Regular.Normal.Dark">
+        <item name="android:textColor">@color/text_color_dark</item>
+        <item name="fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
 
     <style name="TextCountryLabel">
         <item name="android:textColor">@color/text_color_dark</item>

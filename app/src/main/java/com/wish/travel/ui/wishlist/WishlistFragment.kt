@@ -37,7 +37,16 @@ class WishlistFragment : Fragment(R.layout.fragment_wishlist) {
 
         binding.wishlistRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.wishlistRecyclerView.adapter = adapter
+        binding.emptyScreenText.text = "Nothing to see here :(\nAdd some countries to the wishlist."
 
         adapter.initList()
+
+        if(adapter.itemCount == 0){
+            binding.emptyScreenText.visibility = View.VISIBLE
+            binding.wishlistRecyclerView.visibility = View.GONE
+        } else {
+            binding.emptyScreenText.visibility = View.GONE
+            binding.wishlistRecyclerView.visibility = View.VISIBLE
+        }
     }
 }
