@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.wish.travel.R
@@ -35,12 +36,15 @@ class CountryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        binding.progressBar.visibility = View.VISIBLE
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         setTitle(intent.getStringExtra(COUNTRY_NAME))
 
         restCountriesRepository.getCountryByCode(intent.getStringExtra(COUNTRY_ID)!!, successCallback = { country ->
             bindCountryInfoValues(country)
             bindCountryInfoLabels()
+            binding.progressBar.visibility = View.GONE
         }, failureCallback = {})
     }
 
